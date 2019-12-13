@@ -1,0 +1,9 @@
+<router-outlet></router-outlet>
+
+<button id="increment" (click)="increment()">Increment</button>
+
+<button id="setUserInfo" (click)="setUserInfo()">setUserInfo</button>
+
+<div>Current Count: {{ count$ | async }}</div>
+
+<div>Current userInfo: {{ userInfo$ | async | json }}</div>

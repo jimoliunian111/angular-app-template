@@ -1,0 +1,39 @@
+<div class="todo-list">
+  <app-search [btnText]="'添加'" [searchFunc]="searchFunc" (keyWord)="getData($event)" [parent]="this"></app-search>
+
+  <div class="todo-list-content">
+    <div class="todo-list-content-box">
+      <div class="todo-list-content-title">待办事项</div>
+      <div class="todo-list-content-list">
+        <div class="list-item" *ngFor="let item of notlist, let idx = index">
+            <p class="list-item-text">
+              
+                  <img class="img-style" src="assets/images/weixuanzhong.png" alt="" *ngIf="!item.checked" (click)="checked(item, idx)">
+                  <img class="img-style" src="assets/images/xuanzhong.png" alt="" *ngIf="item.checked" (click)="checked(item, idx)">
+             
+              <span>{{item.title}}</span>
+            </p>
+            <p class="list-item-time">{{item.time | date:'yyyy-MM-dd hh:mm:ss'}}</p>
+        </div>
+        
+      </div>
+    </div>
+    <div class="todo-list-content-box">
+      <div class="todo-list-content-title">已办事项</div>
+      <div class="todo-list-content-list">
+        <div class="list-item" *ngFor="let item of list, let idx = index">
+            <p class="list-item-text">
+                <span class="img-style" (click)="check(item, idx)">
+                    <img class="img-style" src="assets/images/weixuanzhong.png" alt="" *ngIf="!item.checked">
+                    <img class="img-style" src="assets/images/xuanzhong.png" alt="" *ngIf="item.checked">
+                </span>
+                <span>{{item.title}}</span>
+            </p>
+            <p class="list-item-time">{{item.time | date:'yyyy-MM-dd hh:mm:ss'}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
