@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { increment } from './reducers/modules/counter';
@@ -7,12 +6,11 @@ import { increment } from './reducers/modules/counter';
 import { setUserInfo } from './reducers/modules/userInfo';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-test-ngrx',
+  templateUrl: './test-ngrx.component.html',
+  styleUrls: ['./test-ngrx.component.scss']
 })
-export class AppComponent {
-  title = 'mgNgApp';
+export class TestNgrxComponent implements OnInit {
 
   count$: Observable<number>;
   userInfo$: Observable<Object>;
@@ -32,4 +30,5 @@ export class AppComponent {
     }
     this.store.dispatch(setUserInfo({user: obj}))
   }
+
 }

@@ -5,7 +5,8 @@ export const setUserInfo = createAction('setUserInfo',  props<{ user: any }>());
 
 // reducer
 import { createReducer, on } from '@ngrx/store';
- 
+
+//state
 export const userInfo = {};
  
 const _userInfoReducer = createReducer(userInfo,
