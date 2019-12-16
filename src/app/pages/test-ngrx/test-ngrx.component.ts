@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { increment } from './reducers/modules/counter';
 
-import { setUserInfo } from './reducers/modules/userInfo';
+import { StoreService } from '../../services/store.service'
 
 @Component({
   selector: 'app-test-ngrx',
@@ -12,23 +11,32 @@ import { setUserInfo } from './reducers/modules/userInfo';
 })
 export class TestNgrxComponent implements OnInit {
 
-  count$: Observable<number>;
   userInfo$: Observable<Object>;
-  constructor(private store: Store<{count: number, userInfo: Object}>) {
-    this.count$ = store.pipe(select('count'));
-    this.userInfo$ = store.pipe(select('userInfo'));
+  constructor(
+    private store: Store,
+    private $store: StoreService) {
   }
 
   increment() {
-    this.store.dispatch(increment());
-  }
-  setUserInfo () {
-    let obj = {
-      name: '张三',
+    this.$store.setFunc('setUserInfo', {
+      name: '李四',
       age: 25,
       sex: '男'
-    }
-    this.store.dispatch(setUserInfo({user: obj}))
+    })
+    this.userInfo$ = this.$store.getFunc('userInfo')
+    console.log('6666', this.$store.getFunc('userInfo'))
+  }
+
+  setUserInfo () {
+    this.$store.setFunc('setUserInfo', {
+      name: '王五',
+      age: 25,
+      sex: '男'
+    })
+    this.userInfo$ = this.$store.getFunc('userInfo')
+  }
+  ngOnInit () {
+    console.log('ng组件已经加载')
   }
 
 }

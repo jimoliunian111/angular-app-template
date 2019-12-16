@@ -5,3 +5,5 @@ const routes = [
     path: 'test_ngrx', component: TestNgrxComponent
   }
 ]
+
+export default routes
